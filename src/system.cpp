@@ -298,7 +298,7 @@ bool System::NewtonSolve(int tag) {
         for(i = 0; i < mat.n; i++) {
             Param *p = param.FindById(mat.param[i]);
             p->val -= mat.X[i];
-            if(isnan(p->val)) {
+            if(std::isnan(p->val)) {
                 // Very bad, and clearly not convergent
                 return false;
             }
@@ -311,7 +311,7 @@ bool System::NewtonSolve(int tag) {
         // Check for convergence
         converged = true;
         for(i = 0; i < mat.m; i++) {
-            if(isnan(mat.B.num[i])) {
+            if(std::isnan(mat.B.num[i])) {
                 return false;
             }
             if(ffabs(mat.B.num[i]) > CONVERGE_TOLERANCE) {
@@ -513,7 +513,7 @@ int System::Solve(Group *g, int *dof, List<hConstraint> *bad,
 didnt_converge:
     SK.constraint.ClearTags();
     for(i = 0; i < eq.n; i++) {
-        if(ffabs(mat.B.num[i]) > CONVERGE_TOLERANCE || isnan(mat.B.num[i])) {
+        if(ffabs(mat.B.num[i]) > CONVERGE_TOLERANCE || std::isnan(mat.B.num[i])) {
             // This constraint is unsatisfied.
             if(!mat.eq[i].isFromConstraint()) continue;
 

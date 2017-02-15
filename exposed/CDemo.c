@@ -234,7 +234,7 @@ void Example2d(void)
             printf(" %d", sys.failed[i]);
         }
         printf("\n");
-        if(sys.result == SLVS_RESULT_INCONSISTENT) {
+        if(sys.result == 1) {
             printf("system inconsistent\n");
         } else {
             printf("system nonconvergent\n");
